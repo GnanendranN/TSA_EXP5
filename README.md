@@ -1,9 +1,9 @@
 # Ex.No: 05  IMPLEMENTATION OF TIME SERIES ANALYSIS AND DECOMPOSITION
-### Date: 16-05-2026
+### Date: 19-05-2026
 
 
 ## AIM:
-To Illustrates how to perform time series analysis and decomposition on the monthly average temperature of a city/country and for airline passengers.
+To Illustrates how to perform time series analysis and decomposition.
 
 ## ALGORITHM:
 1. Import the required packages like pandas and numpy
@@ -19,17 +19,18 @@ import numpy as np
 import matplotlib.pyplot as plt
 from statsmodels.tsa.seasonal import seasonal_decompose
 
-data = pd.read_csv('/content/nasa_exoplanet_intelligence.csv',parse_dates=['disc_year'],index_col='disc_year')
-data = data.sort_values('disc_year')
-decomposition = seasonal_decompose(data['n_planets'], model='additive',period=12)
-plt.figure(figsize=(11,7))
+data = pd.read_csv('/content/drive/MyDrive/Time_Series/tea_vs_coffee_global_final.csv',parse_dates=['year'],index_col='year')
+data = data.sort_values('year')
+decomposition = seasonal_decompose(data['cups_per_day'], model='additive',period=12)
 
 # decomposition.plot() this plots all four of teh following graphs
 # Original Data
+plt.figure(figsize=(12,10))
+
 plt.subplot(411)
-plt.plot(data['n_planets'], label='Number of Planets')
+plt.plot(data['cups_per_day'], label='Number of Cups')
 plt.legend(loc='upper left')
-plt.title('Number of Planets')
+plt.title('Number of Cups')
 # Trend Plot
 plt.subplot(412)
 plt.plot(decomposition.trend, label='Trend', color='orange')
@@ -42,7 +43,7 @@ plt.legend(loc='upper left')
 plt.title('Seasonality Plot')
 # Residual Plot
 plt.subplot(414)
-plt.plot(decomposition.resid, label='Residual', color='red')
+plt.plot(decomposition.resid, label='Residual', color='black')
 plt.legend(loc='upper left')
 plt.title('Residual Plot')
 plt.tight_layout()
@@ -50,7 +51,7 @@ plt.show()
 ```
 
 ## OUTPUT:
-<img width="1079" height="682" alt="image" src="https://github.com/user-attachments/assets/62d5ec61-7b00-4820-aeb4-3f9c217a33c4" />
+<img width="769" height="620" alt="image" src="https://github.com/user-attachments/assets/12f9178b-31d2-4c86-9734-1baaa6c99b06" />
 
 ### RESULT:
 Thus we have created the python code for the time series analysis and decomposition.
